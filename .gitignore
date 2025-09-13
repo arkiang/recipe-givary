@@ -1,0 +1,26 @@
+# Go build
+/bin/
+/build/
+/dist/
+
+# Go modules
+/go.sum
+/go.mod
+
+# IDE/editor files
+*.swp
+*.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# SQLite DB
+*.db
+
+# Logs
+*.log
+
+# Fly.io temp
+.fly/

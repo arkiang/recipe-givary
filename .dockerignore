@@ -1,0 +1,20 @@
+# Ignore everything except Go source and migrations
+**/*
+!go.mod
+!go.sum
+!*.go
+!migrations/
+!Dockerfile
+
+# Exclude editor/OS files
+*.swp
+*.DS_Store
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Git files
+.git
+.gitignore
