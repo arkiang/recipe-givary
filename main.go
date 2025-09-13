@@ -19,7 +19,7 @@ func main() {
 		port = "3000"
 	}
 
-	db, err := sqlx.Connect("sqlite3", "/data/recipes.db")
+	db, err := sqlx.Connect("sqlite3", "data/recipes.db")
 	if err != nil {
 		log.Fatalln("Failed to connect to DB:", err)
 	}
