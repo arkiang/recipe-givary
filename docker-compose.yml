@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: recipe_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - recipes-data:/data
+    environment:
+      PORT: 3000
+
+volumes:
+  recipes-data:
+    driver: local

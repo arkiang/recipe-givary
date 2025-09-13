@@ -7,13 +7,19 @@ import (
 	"givery-recip/infrastructure/persistent"
 	"givery-recip/internal/handler"
 	"givery-recip/internal/usecase"
+	"os"
 
 	_ "github.com/mattn/go-sqlite3"
 	"log"
 )
 
 func main() {
-	db, err := sqlx.Connect("sqlite3", "./data.db")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3000"
+	}
+
+	db, err := sqlx.Connect("sqlite3", "/data/recipes.db")
 	if err != nil {
 		log.Fatalln("Failed to connect to DB:", err)
 	}
@@ -31,8 +37,8 @@ func main() {
 	app := fiber.New()
 	handler.NewRecipeHandler(app, recipeUC)
 
-	log.Println("Server running at http://localhost:8081")
-	if err := app.Listen(":8081"); err != nil {
+	log.Println("Server running at http://localhost:" + port)
+	if err := app.Listen(":" + port); err != nil {
 		log.Fatalln(err)
 	}
 }
