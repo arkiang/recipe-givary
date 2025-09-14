@@ -1,0 +1,123 @@
+{
+	"info": {
+		"_postman_id": "43842b29-90c4-44cb-9eb7-d7bc6f3a4d4f",
+		"name": "Recipe - Givary",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "2835062"
+	},
+	"item": [
+		{
+			"name": "Get All Recipes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "{{baseURL}}/recipes"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Recipe By ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "{{baseURL}}/recipes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": "{{baseURL}}/recipes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Update Recipe",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"title\": \"Tomato Soup\",\n        \"making_time\": \"15 min\",\n        \"serves\": \"5 people\",\n        \"ingredients\": \"onion, tomato, seasoning, water\",\n        \"cost\": 450     \n}"
+				},
+				"url": "{{baseURL}}/recipes/1"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Recipe",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"title\": \"Nasi Goreng\",\n        \"making_time\": \"10 min\",\n        \"serves\": \"1 people\",\n        \"ingredients\": \"rice, onion, ketchup, tomato, seasoning, water\",\n        \"cost\": 100     \n}"
+				},
+				"url": "{{baseURL}}/recipes"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "localhost:3000"
+		}
+	]
+}
