@@ -24,8 +24,8 @@ type CreateRecipeResponse struct {
 }
 
 type GetRecipeResponse struct {
-	Message string     `json:"message,omitempty"`
-	Recipe  RecipeInfo `json:"recipe"`
+	Message string       `json:"message,omitempty"`
+	Recipe  []RecipeInfo `json:"recipe"`
 }
 
 type GetAllRecipesResponse struct {
@@ -33,8 +33,8 @@ type GetAllRecipesResponse struct {
 }
 
 type UpdateRecipeResponse struct {
-	Message string     `json:"message"`
-	Recipe  RecipeInfo `json:"recipe"`
+	Message string       `json:"message"`
+	Recipe  []RecipeInfo `json:"recipe"`
 }
 
 type DeleteRecipeResponse struct {

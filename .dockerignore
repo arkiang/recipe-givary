@@ -1,20 +1,31 @@
-# Ignore everything except Go source and migrations
-**/*
-!go.mod
-!go.sum
-!*.go
-!migrations/
-!Dockerfile
+# flyctl launch added from .gitignore
+# Go build
+dist
 
-# Exclude editor/OS files
-*.swp
-*.DS_Store
-.idea/
-.vscode/
+# IDE/editor files
+**/*.swp
+**/*.vscode
+**/.idea
+
+# OS
+**/.DS_Store
+**/Thumbs.db
 
 # Logs
-*.log
+**/*.log
 
-# Git files
-.git
-.gitignore
+# Fly.io temp
+**/.fly
+
+# flyctl launch added from .idea/.gitignore
+# Default ignored files
+.idea/shelf
+.idea/workspace.xml
+# Editor-based HTTP Client requests
+.idea/httpRequests
+# Environment-dependent path to Maven home directory
+.idea/mavenHomeManager.xml
+# Datasource local storage ignored files
+.idea/dataSources
+.idea/dataSources.local.xml
+fly.toml

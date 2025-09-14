@@ -32,12 +32,12 @@ func (h *RecipeHandler) Create(c *fiber.Ctx) error {
 		})
 	}
 
-	id, err := h.uc.Create(&recipe)
+	created, err := h.uc.Create(&recipe)
 	if err != nil {
 		var e *common.ValidationError
 		switch {
 		case errors.As(err, &e):
-			return c.Status(fiber.StatusBadRequest).JSON(dto.ValidationErrorResponse{
+			return c.Status(fiber.StatusOK).JSON(dto.ValidationErrorResponse{
 				Message:  "Recipe creation failed!",
 				Required: &e.Missing,
 			})
@@ -48,7 +48,21 @@ func (h *RecipeHandler) Create(c *fiber.Ctx) error {
 		}
 	}
 
-	return c.Status(fiber.StatusCreated).JSON(fiber.Map{"id": id})
+	resp := dto.CreateRecipeResponse{
+		Message: "Recipe successfully created!",
+		Recipe: []dto.RecipeInfoWithTimestamp{{
+			ID:          created.ID,
+			Title:       created.Title,
+			MakingTime:  created.MakingTime,
+			Serves:      created.Serves,
+			Ingredients: created.Ingredients,
+			Cost:        created.Cost,
+			CreatedAt:   created.CreatedAt.Format("2006-01-02 15:04:05"),
+			UpdatedAt:   created.UpdatedAt.Format("2006-01-02 15:04:05"),
+		}},
+	}
+
+	return c.JSON(resp)
 }
 
 func (h *RecipeHandler) GetByID(c *fiber.Ctx) error {
@@ -75,14 +89,14 @@ func (h *RecipeHandler) GetByID(c *fiber.Ctx) error {
 
 	resp := dto.GetRecipeResponse{
 		Message: "Recipe details by id",
-		Recipe: dto.RecipeInfo{
+		Recipe: []dto.RecipeInfo{{
 			ID:          recipe.ID,
 			Title:       recipe.Title,
 			MakingTime:  recipe.MakingTime,
 			Serves:      recipe.Serves,
 			Ingredients: recipe.Ingredients,
 			Cost:        recipe.Cost,
-		},
+		}},
 	}
 
 	return c.JSON(resp)
@@ -154,14 +168,14 @@ func (h *RecipeHandler) Update(c *fiber.Ctx) error {
 
 	resp := dto.UpdateRecipeResponse{
 		Message: "Recipe successfully updated!",
-		Recipe: dto.RecipeInfo{
+		Recipe: []dto.RecipeInfo{{
 			ID:          update.ID,
 			Title:       update.Title,
 			MakingTime:  update.MakingTime,
 			Serves:      update.Serves,
 			Ingredients: update.Ingredients,
 			Cost:        update.Cost,
-		},
+		}},
 	}
 
 	return c.JSON(resp)

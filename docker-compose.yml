@@ -1,16 +1,10 @@
-version: "3.8"
+version: "3.9"
 
 services:
-  app:
+  parking-system:
     build: .
-    container_name: recipe_app
+    container_name: givery-recip
     ports:
       - "3000:3000"
     volumes:
-      - recipes-data:/data
-    environment:
-      PORT: 3000
-
-volumes:
-  recipes-data:
-    driver: local
+      - ./data:/app/data   # persist sqlite database file

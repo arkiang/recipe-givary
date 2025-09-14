@@ -1,16 +1,19 @@
 package main
 
 import (
-	"github.com/gofiber/fiber/v2"
-	"github.com/jmoiron/sqlx"
-	"github.com/pressly/goose/v3"
 	"givery-recip/infrastructure/persistent"
 	"givery-recip/internal/handler"
+	"givery-recip/internal/middleware"
 	"givery-recip/internal/usecase"
 	"os"
 
-	_ "github.com/mattn/go-sqlite3"
+	"github.com/gofiber/fiber/v2"
+	"github.com/jmoiron/sqlx"
+	"github.com/pressly/goose/v3"
+
 	"log"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 func main() {
@@ -35,6 +38,8 @@ func main() {
 	recipeUC := usecase.NewRecipeUsecase(recipeRepo)
 
 	app := fiber.New()
+	app.Use(middleware.ForceJSON())
+
 	handler.NewRecipeHandler(app, recipeUC)
 
 	log.Println("Server running at http://localhost:" + port)
